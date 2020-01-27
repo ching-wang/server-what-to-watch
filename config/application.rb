@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -26,13 +26,14 @@ module BackendWhatToWatch
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-     
-        resource '*',
+        origins "*"
+
+        resource "*",
           headers: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
-      
+    end
+
     config.api_only = true
   end
 end
