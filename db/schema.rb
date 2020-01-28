@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_094742) do
+ActiveRecord::Schema.define(version: 2020_01_27_214112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 2020_01_28_094742) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.integer "director_id"
+    t.bigint "director_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["director_id"], name: "index_movies_on_director_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,13 +63,16 @@ ActiveRecord::Schema.define(version: 2020_01_28_094742) do
 
   create_table "wish_lists", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wish_lists_on_user_id"
   end
 
   add_foreign_key "movie_genres", "genres"
   add_foreign_key "movie_genres", "movies"
+  add_foreign_key "movies", "directors"
   add_foreign_key "wish_list_items", "movies"
   add_foreign_key "wish_list_items", "wish_lists"
+  add_foreign_key "wish_lists", "users"
 end
