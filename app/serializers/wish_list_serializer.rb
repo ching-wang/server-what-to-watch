@@ -1,3 +1,4 @@
 class WishListSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name
+  belongs_to :user
 end

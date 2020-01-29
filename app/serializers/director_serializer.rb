@@ -1,3 +1,4 @@
 class DirectorSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :name
+  has_many :movies
 end

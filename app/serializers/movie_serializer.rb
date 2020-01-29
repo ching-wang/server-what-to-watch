@@ -1,3 +1,4 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :title, :director_id
+  attributes :id, :title
+  belongs_to :director
 end
