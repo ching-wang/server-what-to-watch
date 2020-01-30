@@ -10,10 +10,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by(username: user_params[:username])
+    user = User.find_by(email: user_params[:email])
 
     if user && user.authenticate(user_params[:password])
-      render json: user
+      render json: { token: issue_token({ user_id: user.id }) }
     else
       render json: { errors: ["error"] }, status: :not_acceptable
     end
@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
 
   def validate
     if logged_in?
-      render json: @current_user
+      render json: { user: UserSerializer.new(@current_user) }
     else
       render json: { errors: ["error"] }, status: :not_acceptable
     end
@@ -30,6 +30,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:email, :password)
   end
 end
