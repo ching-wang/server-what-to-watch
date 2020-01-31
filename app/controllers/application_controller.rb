@@ -3,12 +3,10 @@ class ApplicationController < ActionController::API
 
   def issue_token(payload)
     JWT.encode(payload, ENV["MY_SECRET"])
-    # JWT.encode(payload, "foobar")
   end
 
   def decode_token(token)
     JWT.decode(token, ENV["MY_SECRET"])[0]
-    # JWT.decode(token, "foobar")[0]
   end
 
   def get_token
