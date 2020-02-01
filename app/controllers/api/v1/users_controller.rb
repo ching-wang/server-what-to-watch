@@ -27,9 +27,20 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find_by(id: params[:id])
+    user.update(
+      username: params[:username],
+      email: params[:email],
+    )
+    render json: { user: UserSerializer.new(user) }
+  end
+
+  # headers['Last-Modified'] = Time.now.httpdate
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:username, :email, :password)
   end
 end
