@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_214112) do
+ActiveRecord::Schema.define(version: 2020_02_02_113342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actor_movies", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_actor_movies_on_actor_id"
+    t.index ["movie_id"], name: "index_actor_movies_on_movie_id"
+  end
+
+  create_table "actors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "directors", force: :cascade do |t|
     t.string "name"
@@ -38,6 +53,9 @@ ActiveRecord::Schema.define(version: 2020_01_27_214112) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
+    t.date "released"
+    t.string "language"
+    t.string "poster"
     t.bigint "director_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -46,6 +64,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_214112) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "avatar"
+    t.string "bio"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
@@ -69,6 +89,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_214112) do
     t.index ["user_id"], name: "index_wish_lists_on_user_id"
   end
 
+  add_foreign_key "actor_movies", "actors"
+  add_foreign_key "actor_movies", "movies"
   add_foreign_key "movie_genres", "genres"
   add_foreign_key "movie_genres", "movies"
   add_foreign_key "movies", "directors"
