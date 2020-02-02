@@ -12,10 +12,15 @@ class Api::V1::UsersController < ApplicationController
   def login
     user = User.find_by(email: user_params[:email])
 
+    if !user
+      render json: { errors: ["user not found"] }, status: :not_found
+      return
+    end
+
     if user && user.authenticate(user_params[:password])
       render json: { token: issue_token({ user_id: user.id }) }
     else
-      render json: { errors: ["error"] }, status: :not_acceptable
+      render json: { errors: ["unauthorized"] }, status: :unauthorized
     end
   end
 
