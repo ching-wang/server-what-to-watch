@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_113342) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.date "released"
+    t.integer "year"
     t.string "language"
     t.string "poster"
     t.bigint "director_id", null: false
