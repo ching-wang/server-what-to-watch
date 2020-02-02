@@ -24,6 +24,11 @@ class Api::V1::WishListItemsController < ApplicationController
     render json: wish_list_item
   end
 
+  def destroy
+    wish_list_item = WishListItem.find_by(params[:wish_list_item_id])
+    wish_list_item.destroy
+  end
+
   private
 
   def destroy_params
