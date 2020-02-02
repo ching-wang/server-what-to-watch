@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_113342) do
   end
 
   create_table "movies", force: :cascade do |t|
+    t.string "imdb_id"
     t.string "title"
     t.integer "year"
     t.string "language"

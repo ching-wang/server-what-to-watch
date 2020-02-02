@@ -33,20 +33,23 @@ director_b = Director.create(name: "J.J.Abrams")
 director_c = Director.create(name: "Rian Johnson")
 
 movie_a = Movie.create(
-  title: "joker",
+  imdb_id: "tt7286456",
+  title: "Joker",
   year: 2019,
   language: "English",
   poster: "https://images-na.ssl-images-amazon.com/images/I/71jKxPAMFbL._SY450_.jpg",
   director_id: director_a.id,
 )
 movie_b = Movie.create(
-  title: "star wars: The Rise of Skywalker",
+  imdb_id: "tt2527338",
+  title: "Star Wars: The Rise of Skywalker",
   year: 2019,
   language: "English",
   poster: "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_.jpg",
   director_id: director_b.id,
 )
 movie_c = Movie.create(
+  imdb_id: "tt2015381",
   title: "Guardians of the Galaxy Vol. 2",
   year: 2019,
   language: "English",

@@ -17,4 +17,5 @@ class Api::V1::SearchController < ApplicationController
     end
     render json: { errors: ["Must provide s query"] }, status: :bad_request
   end
+
 end
