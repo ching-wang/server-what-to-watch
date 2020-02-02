@@ -1,7 +1,26 @@
+require "faker"
 
-user_a = User.create(username: "Qing", email: "qing@gmail.com", password: "123456")
-user_b = User.create(username: "Tom", email: "tom@gmail.com", password: "helloworld")
-user_c = User.create(username: "Sergio", email: "sergio@gmail.com", password: "iamsergio")
+user_a = User.create(
+  username: "Qing",
+  avatar: "https://semantic-ui.com/images/avatar2/large/molly.png",
+  bio: "All your dreams can come true and I'll make sure of it.",
+  email: "qing@gmail.com",
+  password: "qing",
+)
+user_b = User.create(
+  username: "Andy",
+  avatar: "https://semantic-ui.com/images/avatar2/large/elyse.png",
+  bio: "Sprinkling kindness everywhere I go",
+  email: "andy@gmail.com",
+  password: "andy",
+)
+user_c = User.create(
+  username: "Sergio",
+  avatar: "https://semantic-ui.com/images/avatar2/large/matthew.png",
+  bio: "I love my followers more than life itself",
+  email: "sergio@gmail.com",
+  password: "sergio",
+)
 
 genre_a = Genre.create(name: "action")
 genre_b = Genre.create(name: "horror")
@@ -13,9 +32,40 @@ director_a = Director.create(name: "Todd Philips")
 director_b = Director.create(name: "J.J.Abrams")
 director_c = Director.create(name: "Rian Johnson")
 
-movie_a = Movie.create(title: "joker", director_id: director_a.id)
-movie_b = Movie.create(title: "star wars: The Rise of Skywalker", director_id: director_b.id)
-movie_c = Movie.create(title: "Knives Out", director_id: director_c.id)
+movie_a = Movie.create(
+  title: "joker",
+  released: "2019",
+  language: "English",
+  poster: "https://images-na.ssl-images-amazon.com/images/I/71jKxPAMFbL._SY450_.jpg",
+  director_id: director_a.id,
+)
+movie_b = Movie.create(
+  title: "star wars: The Rise of Skywalker",
+  released: "2019",
+  language: "English",
+  poster: "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_.jpg",
+  director_id: director_b.id,
+)
+movie_c = Movie.create(
+  title: "Guardians of the Galaxy Vol. 2",
+  released: "2017",
+  language: "English",
+  director_id: director_c.id,
+  poster: "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
+)
+
+actor_a = Actor.create(name: Faker::Name.name)
+actor_b = Actor.create(name: Faker::Name.name)
+actor_c = Actor.create(name: Faker::Name.name)
+actor_e = Actor.create(name: Faker::Name.name)
+actor_f = Actor.create(name: Faker::Name.name)
+
+actor_movie_a = ActorMovie.create(actor_id: movie_a, movie_id: actor_a)
+actor_movie_b = ActorMovie.create(actor_id: movie_a, movie_id: actor_b)
+actor_movie_c = ActorMovie.create(actor_id: movie_b, movie_id: actor_e)
+actor_movie_c = ActorMovie.create(actor_id: movie_c, movie_id: actor_f)
+actor_movie_c = ActorMovie.create(actor_id: movie_b, movie_id: actor_e)
+actor_movie_c = ActorMovie.create(actor_id: movie_b, movie_id: actor_c)
 
 movie_genre_a = MovieGenre.create(movie_id: movie_a.id, genre_id: genre_a.id)
 movie_genre_c = MovieGenre.create(movie_id: movie_b.id, genre_id: genre_b.id)
