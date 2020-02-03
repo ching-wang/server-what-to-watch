@@ -34,8 +34,13 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.find_by(id: params[:id])
+    if !user
+      render json: { errors: ["please login or signup"] }, status: :not_found
+    end
     user.update(
-      username: params[:username],
+      username: params[:username].capitalize,
+      avatar: params[:avatar],
+      bio: params[:bio].capitalize,
       email: params[:email],
     )
     render json: { user: UserSerializer.new(user) }
@@ -46,6 +51,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :avatar, :bio, :password)
   end
 end

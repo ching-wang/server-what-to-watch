@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2020_02_02_113342) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "wish_list_items", force: :cascade do |t|

@@ -4,21 +4,21 @@ user_a = User.create(
   username: "Qing",
   avatar: "https://semantic-ui.com/images/avatar2/large/molly.png",
   bio: "All your dreams can come true and I'll make sure of it.",
-  email: "qing@gmail.com",
+  email: "qing@test.com",
   password: "qing",
 )
 user_b = User.create(
   username: "Andy",
   avatar: "https://semantic-ui.com/images/avatar2/large/elyse.png",
   bio: "Sprinkling kindness everywhere I go",
-  email: "andy@gmail.com",
+  email: "andy@test.com",
   password: "andy",
 )
 user_c = User.create(
   username: "Sergio",
   avatar: "https://semantic-ui.com/images/avatar2/large/matthew.png",
   bio: "I love my followers more than life itself",
-  email: "sergio@gmail.com",
+  email: "sergio@test.com",
   password: "sergio",
 )
 
@@ -74,10 +74,10 @@ movie_genre_a = MovieGenre.create(movie_id: movie_a.id, genre_id: genre_a.id)
 movie_genre_c = MovieGenre.create(movie_id: movie_b.id, genre_id: genre_b.id)
 movie_genre_d = MovieGenre.create(movie_id: movie_c.id, genre_id: genre_c.id)
 
-wish_list_a = WishList.create(name: "weekend movie", user_id: user_a.id)
-wish_list_b = WishList.create(name: "working day movie", user_id: user_b.id)
-wish_list_c = WishList.create(name: "holiday movie", user_id: user_c.id)
-wish_list_d = WishList.create(name: "christmas movie", user_id: user_a.id)
+wish_list_a = WishList.create(name: "Weekend movie", user_id: user_a.id)
+wish_list_b = WishList.create(name: "Working day movie", user_id: user_b.id)
+wish_list_c = WishList.create(name: "Holiday movie", user_id: user_c.id)
+wish_list_d = WishList.create(name: "Christmas movie", user_id: user_a.id)
 
 wish_list_item_a = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_a.id)
 wish_list_item_b = WishListItem.create(movie_id: movie_b.id, wish_list_id: wish_list_b.id)
