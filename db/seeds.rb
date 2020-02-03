@@ -56,6 +56,31 @@ movie_c = Movie.create(
   director_id: director_c.id,
   poster: "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
 )
+movie_d = Movie.create(
+  imdb_id: "tt2452244",
+  title: "Isn't It Romantic",
+  year: 2019,
+  language: "English",
+  director_id: director_c.id,
+  poster: "https://m.media-amazon.com/images/M/MV5BZGE1NGYxOWItODdmMy00NWNhLTgxZmMtYmVjYmViMGI0NTdmXkEyXkFqcGdeQXVyNzE2MTQyMzM@._V1_SX300.jpg",
+)
+movie_e = Movie.create(
+  imdb_id: "tt1679482",
+  title: "Supernatural: The Animation",
+  year: 2011,
+  language: "Japanese",
+  director_id: director_a.id,
+  poster: "https://m.media-amazon.com/images/M/MV5BNDljNDlkZjctNDFlZi00ZjNjLTkxNDQtOTI5MzY1MGIzNGQ4XkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_SX300.jpg",
+)
+
+movie_f = Movie.create(
+  imdb_id: "tt0299977",
+  title: "Hero",
+  year: 2002,
+  language: "Chinese",
+  director_id: director_b.id,
+  poster: "https://m.media-amazon.com/images/M/MV5BMWQ2MjQ0OTctMWE1OC00NjZjLTk3ZDAtNTk3NTZiYWMxYTlmXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+)
 
 actor_a = Actor.create(name: Faker::Name.name)
 actor_b = Actor.create(name: Faker::Name.name)
@@ -74,13 +99,27 @@ movie_genre_a = MovieGenre.create(movie_id: movie_a.id, genre_id: genre_a.id)
 movie_genre_c = MovieGenre.create(movie_id: movie_b.id, genre_id: genre_b.id)
 movie_genre_d = MovieGenre.create(movie_id: movie_c.id, genre_id: genre_c.id)
 
-wish_list_a = WishList.create(name: "Weekend movie", user_id: user_a.id)
-wish_list_b = WishList.create(name: "Working day movie", user_id: user_b.id)
-wish_list_c = WishList.create(name: "Holiday movie", user_id: user_c.id)
-wish_list_d = WishList.create(name: "Christmas movie", user_id: user_a.id)
+wish_list_a = WishList.create(name: "Weekend Wishlist", description: "This is a wishlist for weekend", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_a.id)
+wish_list_b = WishList.create(name: "Working day Wishlist", description: "This is a wishlist for working day", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_b.id)
+wish_list_c = WishList.create(name: "Holiday Wishlist", description: "This is a wishlist for holiday", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_c.id)
+wish_list_d = WishList.create(name: "Christmas Wishlist", description: "This is a wishlist for Christmas", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_a.id)
+wish_list_e = WishList.create(name: "Summer Wishlist", description: "This is a wishlist for Summer", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_a.id)
+wish_list_f = WishList.create(name: "Winter Wishlist", description: "This is a wishlist for winter", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_a.id)
+wish_list_g = WishList.create(name: "Spring Wishlist", description: "This is a wishlist for spring", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_c.id)
+wish_list_h = WishList.create(name: "Sunday Wishlist", description: "This is a wishlist for sunday", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_c.id)
+wish_list_i = WishList.create(name: "Tonight Wishlist", description: "This is a wishlist for tonight", image: "https://yada.org/wp-content/uploads/2018/11/just-in-the-time-for-the-weekend-our-list-of-5-classic-movies-for-a-relaxing-weekend-in.-these-movie.jpg", user_id: user_b.id)
 
 wish_list_item_a = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_a.id)
 wish_list_item_b = WishListItem.create(movie_id: movie_b.id, wish_list_id: wish_list_b.id)
 wish_list_item_c = WishListItem.create(movie_id: movie_c.id, wish_list_id: wish_list_c.id)
-wish_list_item_d = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_a.id)
-wish_list_item_e = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_a.id)
+wish_list_item_d = WishListItem.create(movie_id: movie_f.id, wish_list_id: wish_list_b.id)
+wish_list_item_e = WishListItem.create(movie_id: movie_d.id, wish_list_id: wish_list_a.id)
+wish_list_item_f = WishListItem.create(movie_id: movie_c.id, wish_list_id: wish_list_b.id)
+wish_list_item_g = WishListItem.create(movie_id: movie_d.id, wish_list_id: wish_list_b.id)
+wish_list_item_h = WishListItem.create(movie_id: movie_e.id, wish_list_id: wish_list_c.id)
+wish_list_item_i = WishListItem.create(movie_id: movie_f.id, wish_list_id: wish_list_d.id)
+wish_list_item_j = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_e.id)
+wish_list_item_j = WishListItem.create(movie_id: movie_b.id, wish_list_id: wish_list_f.id)
+wish_list_item_j = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_g.id)
+wish_list_item_j = WishListItem.create(movie_id: movie_c.id, wish_list_id: wish_list_h.id)
+wish_list_item_j = WishListItem.create(movie_id: movie_a.id, wish_list_id: wish_list_i.id)

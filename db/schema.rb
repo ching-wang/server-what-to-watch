@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2020_02_02_113342) do
 
   create_table "wish_lists", force: :cascade do |t|
     t.string "name"
+    t.string "description"
+    t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
