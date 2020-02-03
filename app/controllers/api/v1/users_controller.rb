@@ -33,20 +33,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by(id: params[:id])
-    if !user
-      render json: { errors: ["please login or signup"] }, status: :not_found
-    end
-    user.update(
-      username: params[:username].capitalize,
-      avatar: params[:avatar],
-      bio: params[:bio].capitalize,
-      email: params[:email],
-    )
+    user = @current_user
+    user.update(user_params)
     render json: { user: UserSerializer.new(user) }
   end
-
-  # headers['Last-Modified'] = Time.now.httpdate
 
   private
 
