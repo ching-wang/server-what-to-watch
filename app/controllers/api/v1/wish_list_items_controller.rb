@@ -5,6 +5,21 @@ class Api::V1::WishListItemsController < ApplicationController
   BASE_URL = "www.omdbapi.com"
   OMDB_KEY = ENV["OMDB_KEY"]
 
+  def index
+    if !logged_in?
+      protected_action()
+      return
+    end
+
+    # Select all the wish list items that belong to a wish list that belongs to the user.
+    # wish_list_items = WishListItem.joins(:wish_list).where(:wish_lists => { :user_id => @current_user.id })
+
+    wish_lists = WishList.where("user_id = ?", @current_user.id)
+    wish_list_items = wish_lists.map { |wl| wl.wish_list_items }.flatten
+
+    render json: wish_list_items
+  end
+
   def create
     if !logged_in?
       protected_action()
