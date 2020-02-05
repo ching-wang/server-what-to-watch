@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     if user.valid?
       render json: user
     else
-      render json: { errors: user.errors.full_messages }, status: :not_acceptable
+      render json: { message: user.errors.full_messages }, status: :not_acceptable
     end
   end
 
@@ -36,6 +36,27 @@ class Api::V1::UsersController < ApplicationController
     user = @current_user
     user.update(user_params)
     render json: { user: UserSerializer.new(user) }
+  end
+
+  def destroy
+    if !logged_in?
+      protected_action()
+      return
+    end
+
+    user = User.find_by(id: params[:id])
+    return user.destroy
+    # if !user
+    #   render json: { errors: ["No such wish list"] }, status: :not_found
+    #   return
+    # end
+
+    # if user.user_id != @current_user.id
+    #   render json: { errors: ["You can't delete other people's wish lists!"] }, status: :unauthorized
+    #   return
+    # end
+    # deleted = user.destroy
+    # render json: deleted
   end
 
   private
