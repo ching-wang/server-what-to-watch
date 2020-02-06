@@ -31,8 +31,7 @@ class Api::V1::WishListsController < ApplicationController
       protected_action()
       return
     end
-
-    wishList = WishList.find_by(params[:id])
+    wishList = WishList.find_by(id: params[:id])
     wishList.update(wishList_params)
     render json: { wishlist: WishListSerializer.new(wishList) }
   end

@@ -3,17 +3,17 @@ class Api::V1::UsersController < ApplicationController
     user = User.create(user_params)
 
     if user.valid?
-      render json: {user: user, token: issue_token({ user_id: user.id })}
+      render json: { user: user, token: issue_token({ user_id: user.id }) }
     else
-      render json: { message: user.errors.full_messages }, status: :not_acceptable
+      render json: { errors: user.errors.full_messages }, status: :not_acceptable
     end
   end
-
+  
   def login
     user = User.find_by(email: user_params[:email])
 
     if !user
-      render json: { errors: ["user not found"] }, status: :not_found
+      render json: { errors: ["It seems that you haven't registed with us"] }, status: :not_found
       return
     end
 
@@ -33,6 +33,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    if !logged_in?
+      protected_action()
+      return
+    end
     user = @current_user
     user.update(user_params)
     render json: { user: UserSerializer.new(user) }
@@ -46,17 +50,6 @@ class Api::V1::UsersController < ApplicationController
 
     user = User.find_by(id: params[:id])
     return user.destroy
-    # if !user
-    #   render json: { errors: ["No such wish list"] }, status: :not_found
-    #   return
-    # end
-
-    # if user.user_id != @current_user.id
-    #   render json: { errors: ["You can't delete other people's wish lists!"] }, status: :unauthorized
-    #   return
-    # end
-    # deleted = user.destroy
-    # render json: deleted
   end
 
   private
