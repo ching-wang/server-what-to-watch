@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(email: user_params[:email])
 
     if !user
-      render json: { errors: ["user not found"] }, status: :not_found
+      render json: { errors: ["It seems that you haven't registed with us"] }, status: :not_found
       return
     end
 
@@ -50,17 +50,6 @@ class Api::V1::UsersController < ApplicationController
 
     user = User.find_by(id: params[:id])
     return user.destroy
-    # if !user
-    #   render json: { errors: ["No such wish list"] }, status: :not_found
-    #   return
-    # end
-
-    # if user.user_id != @current_user.id
-    #   render json: { errors: ["You can't delete other people's wish lists!"] }, status: :unauthorized
-    #   return
-    # end
-    # deleted = user.destroy
-    # render json: deleted
   end
 
   private
