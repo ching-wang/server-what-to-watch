@@ -8,19 +8,19 @@ class Api::V1::UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :not_acceptable
     end
   end
-  
+
   def login
     user = User.find_by(email: user_params[:email])
 
     if !user
-      render json: { errors: ["It seems that you haven't registed with us"] }, status: :not_found
+      render json: { errors: ["It seems that you haven't registered with us"] }, status: :not_found
       return
     end
 
     if user && user.authenticate(user_params[:password])
       render json: { token: issue_token({ user_id: user.id }) }
     else
-      render json: { errors: ["unauthorized"] }, status: :unauthorized
+      render json: { errors: ["Your email or password is wrong, please try again"] }, status: :unauthorized
     end
   end
 
@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApplicationController
     if logged_in?
       render json: { user: UserSerializer.new(@current_user) }
     else
-      render json: { errors: ["error"] }, status: :not_acceptable
+      render json: { errors: ["Not validate"] }, status: :not_acceptable
     end
   end
 
