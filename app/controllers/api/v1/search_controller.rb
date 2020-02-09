@@ -11,11 +11,14 @@ class Api::V1::SearchController < ApplicationController
         .split(/\s+/)
         .slice(0, 10)
         .join("+")
-      search_results = Net::HTTP.get(BASE_URL, "/?apikey=#{OMDB_KEY}&s=#{search_query}")
+      results_page = params[:page] ? params[:page] : 1
+      search_results = Net::HTTP.get(
+        BASE_URL,
+        "/?apikey=#{OMDB_KEY}&s=#{search_query}&page=#{results_page}"
+      )
       render json: search_results
       return
     end
     render json: { errors: ["Must provide s query"] }, status: :bad_request
   end
-
 end
