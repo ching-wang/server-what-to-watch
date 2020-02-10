@@ -20,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
     if user && user.authenticate(user_params[:password])
       render json: { token: issue_token({ user_id: user.id }) }
     else
-      render json: { errors: ["Your email or password is wrong, please try again"] }, status: :unauthorized
+      render json: { errors: ["Email or password is wrong"] }, status: :unauthorized
     end
   end
 
