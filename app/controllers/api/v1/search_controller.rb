@@ -19,6 +19,6 @@ class Api::V1::SearchController < ApplicationController
       render json: search_results
       return
     end
-    render json: { errors: ["Must provide s query"] }, status: :bad_request
+    render json: { errors: ["Must provide a search term, film/TV show name or genre"] }, status: :bad_request
   end
 end

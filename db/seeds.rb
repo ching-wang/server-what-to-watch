@@ -5,14 +5,14 @@ user_a = User.create(
   avatar: "https://semantic-ui.com/images/avatar2/large/molly.png",
   bio: "All your dreams can come true and I'll make sure of it.",
   email: "qing@test.com",
-  password: "qing",
+  password: "password",
 )
 user_b = User.create(
   username: "Andy",
   avatar: "https://semantic-ui.com/images/avatar2/large/elyse.png",
   bio: "Sprinkling kindness everywhere I go",
   email: "andy@test.com",
-  password: "andy",
+  password: "password",
 )
 user_c = User.create(
   username: "Sergio",
