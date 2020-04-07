@@ -40,16 +40,27 @@ class Api::V1::WishListItemsController < ApplicationController
   end
 
   def destroy
-    wish_list_item = WishListItem.find_by(params[:wish_list_item_id])
-    wish_list_item.destroy
-    render json: wish_list_item
+    if !logged_in?
+      protected_action()
+      return
+    end
+
+    if !params[:id]
+      render json: { errors: ["No wish list item id given"] }, status: :bad_request
+      return
+    end
+
+    wish_list_item = WishListItem.find_by(id: params[:id])
+    if wish_list_item.wish_list.user_id != @current_user.id
+      render json: { errors: ["You can't delete other people's wish list items!"] }, status: :unauthorized
+      return
+    end
+
+    deleted = wish_list_item.destroy
+    render json: deleted
   end
 
   private
-
-  def destroy_params
-    params.require(:wish_list_item_id)
-  end
 
   def initialise_movie(imdb_id)
     movie_data = fetch_movie_from_omdb(params[:imdb_id])
